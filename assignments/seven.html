@@ -2,19 +2,25 @@
 <html>
 <body>
 
-<h2>Text input fields</h2>
+<h2>HTML Forms</h2>
 
-<form>
+<form action="/action_page.php">
   <label for="fname">First name:</label><br>
   <input type="text" id="fname" name="fname" value="John"><br>
   <label for="lname">Last name:</label><br>
-  <input type="text" id="lname" name="lname" value="Doe">
-</form>
+  <input type="text" id="email" name="email" value=" "><br><br>
 
-<p>Note that the form itself is not visible.</p>
+   <label for="cars">subject:</label>
+  <select id="cars" name="cars">
+    <option value="java">Java</option>
+    <option value="python">Python</option>
+    <option value="frontend">Frontend</option>
+    <option value="c++">c++</option>
+  </select>
+  <input type="submit">
+</form> 
 
-<p>Also note that the default width of text input fields is 20 characters.</p>
+<p>If you click the "Submit" button, the form-data will be sent to a page called "/action_page.php".</p>
 
 </body>
 </html>
-
