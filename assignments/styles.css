@@ -1,20 +1,26 @@
 body {
-    background-color: #0f172a;
-    color: white;
+    font-family: Arial, sans-serif;
+    background-color: #f3e8ff;
+    margin: 20px;
 }
 
 h1 {
-    color: #38bdf8;
+    color: #6b21a8;
+    text-align: center;
 }
 
 ol {
-    background: #1e293b;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 60%;
+    margin: auto;
 }
 
 a {
-    background-color: #0ea5e9;
+    background-color: #7c3aed;
 }
 
 a:hover {
-    background-color: #0284c7;
+    background-color: #5b21b6;
 }
