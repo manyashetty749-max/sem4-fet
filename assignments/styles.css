@@ -1,11 +1,11 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f6f8;
+    background-color: #f3e8ff;
     margin: 20px;
 }
 
 h1 {
-    color: #2c3e50;
+    color: #6b21a8;
     text-align: center;
 }
 
@@ -17,28 +17,10 @@ ol {
     margin: auto;
 }
 
-li {
-    margin: 10px 0;
-}
-
-ul {
-    margin-top: 5px;
-}
-
 a {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    text-decoration: none;
-    color: white;
-    background-color: #3498db;
-    padding: 10px;
-    width: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 5px;
+    background-color: #7c3aed;
 }
 
 a:hover {
-    background-color: #2980b9;
+    background-color: #5b21b6;
 }
