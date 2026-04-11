@@ -3,39 +3,38 @@
 <head>
     <title>My Resume</title>
     <style>
-   
-        h1 {
-            text-align: center;
-            color: blue;
-            border-bottom :2px solid black;
-        }
-        h3, p {
-            text-align: center;
-            color: black;
-           
-        }
-         ul,p {
-    
-    list-style-type: square;
-}
+
         body {
             font-family: sans-serif;
             margin: 40px;
+            text-align: center;   /* centers most content */
         }
-        
-        ul {
-            display: inline-block;
-            text-align: center;
+
+        h1 {
+            color: blue;
+            border-bottom: 2px solid black;
         }
-            background
+
+        h3, p {
+            color: black;
+        }
+
         .list-container {
-            text-align: center;
+            display: flex;
+            justify-content: center;  /* centers lists horizontally */
         }
+
+        ul {
+            text-align: left;   /* keeps list readable */
+            list-style-type: square;
+        }
+
         a {    
             color: white;
             background-color: dodgerblue;
             padding: 8px 12px;
             border-radius: 5px;
+            text-decoration: none;
         }
 
     </style>
@@ -85,7 +84,7 @@
     </div>
 
     <p>
-        <a href="https://manyashetty749-max.github.io/sem4-fet/">my Resume</a>
+        <a href="https://manyashetty749-max.github.io/sem4-fet/">My Resume</a>
     </p>
 
 </body>
