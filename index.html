@@ -1,37 +1,95 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Centered Paragraph</title>
+  <title>Manya's Portfolio</title>
   <style>
     body {
-      background-color: orange;
+      background-color: #ff9800; /* A slightly smoother orange */
       display: flex;
       justify-content: center;   
       align-items: center;      
-      height: 100vh;            
+      min-height: 100vh;            
       margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Main container card */
+    .card {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      max-width: 500px;
+      width: 90%;
       text-align: center;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    p {
+      color: #666;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
+    }
+
+    /* List styling */
+    ol {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* Creates two columns for links */
+      gap: 10px;
+    }
+
+    li a {
+      display: block;
+      background-color: #f4f4f4;
+      color: #333;
+      text-decoration: none;
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      border: 1px solid #ddd;
+    }
+
+    /* Hover effect for links */
+    li a:hover {
+      background-color: #ff9800;
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    /* Makes the last link span across both columns if odd number */
+    li:last-child:nth-child(odd) {
+      grid-column: span 2;
     }
   </style>
 </head>
 <body>
 
-  <div>
-   <ol>
-   <li><a href ="https://manyashetty749-max.github.io/sem4-fet/assignments/one.html">assignment-1</a></li>
-    <li><a href ="https://manyashetty749-max.github.io/sem4-fet/assignments/two.html">assignment-2</a></li>
-    <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/three.html">assignment-3</a></li>
-    <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/four.html">assignment-4</a></li>
-    <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/five.html">assignment-5</a></li>
-   <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/six.html">assignment-6</a></li>
-      <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/seven.html">assignment-7</a></li>
-      <li><a href ="https://manyashetty749-max.github.io/sem4-fet//assignments/one_css.html">assignment-css1</a></li>
- </ol>
-    <h1>Hello World</h1>
-    <p>my name is manya and i am persuing BE in cse.</p>
-     
+  <div class="card">
+    <h1>Hello World!</h1>
+    <p>My name is Manya and I am pursuing BE in CSE.</p>
+    
+    <hr style="border: 0; border-top: 1px solid #eee; margin-bottom: 20px;">
+    
+    <h3 style="color: #444;">Assignments</h3>
+    <ol>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one.html">Assignment 1</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two.html">Assignment 2</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/three.html">Assignment 3</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/four.html">Assignment 4</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/five.html">Assignment 5</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/six.html">Assignment 6</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/seven.html">Assignment 7</a></li>
+      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one_css.html">CSS Lab 1</a></li>
+    </ol>
   </div>
-
 
 </body>
 </html>
