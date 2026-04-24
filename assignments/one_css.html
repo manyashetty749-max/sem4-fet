@@ -4,44 +4,43 @@
     <title>My Resume</title>
     <style>
         body {
-    background-color: #1a0f2e;
-    color: white;
+    font-family: sans-serif;
+    margin: 40px;
+    text-align: center;
+    background-color: #1a0f2e;   /* added dark purple */
+    color: white;                /* text visible on dark */
 }
 
 h1 {
-    color: #d291ff;
-}
-
-ul {
-    background-color: black;
-    padding: 15px;
-    border-radius: 10px;
+    color: #d291ff;              /* light purple */
+    border-bottom: 2px solid #d291ff;
 }
 
 h3, p {
-    color: white;
+    color: white;                /* changed from black */
 }
 
-        
+.list-container {
+    display: flex;
+    justify-content: center;
+}
 
-        .list-container {
-            display: flex;
-            justify-content: center;  /* centers lists horizontally */
-        }
+/* small change here */
+ul {
+    text-align: left;
+    list-style-type: square;
+    background-color: black;     /* added */
+    padding: 15px 30px;          /* added */
+    border-radius: 10px;         /* added */
+}
 
-        ul {
-            text-align: left;   /* keeps list readable */
-            list-style-type: square;
-        }
-
-        a {    
-            color: white;
-            background-color: dodgerblue;
-            padding: 8px 12px;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
+a {    
+    color: white;
+    background-color: #a259ff;   /* changed color */
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+}
     </style>
 </head>
 <body>
