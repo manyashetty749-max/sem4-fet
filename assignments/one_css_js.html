@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Resume</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 40px;
+            text-align: center;
+            background-color: #1a0f2e;   
+            color: white;               
+        }
+
+        h1 {
+            color: #d291ff;              
+            border-bottom: 2px solid #d291ff;
+        }
+
+        h3, p {
+            color: white;            
+        }
+
+        .list-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        ul {
+            text-align: left;
+            list-style-type: square;
+            background-color: black;     
+            padding: 15px 30px;          
+            border-radius: 10px;         
+        }
+
+        a {    
+            color: white;
+            background-color: #a259ff;   
+            padding: 8px 12px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            background-color: #a259ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Manya Shetty</h1>
+
+   
+    <h3 id="course">Computer Science Engineering Student</h3>
+
+  
+    <button onclick="changeCourse()">Change Course</button>
+
+    <div class="list-container">
+        <ul>
+            <li>Interested to explore new things.</li>
+            <li>Languages known: C, Python.</li>
+        </ul>
+    </div>
+
+    <h3>Education</h3>
+    <div class="list-container">
+        <ul>
+            <li>BE in Computer Science Engineering (Pursuing)</li>
+            <li>Completed Computer Course</li>
+            <li>12th Grade</li>
+            <li>10th Grade</li>
+        </ul>
+    </div>
+
+    <h3>Career Objective</h3>
+    <p>
+        To secure a position in the field of Computer Science where I can
+        apply my knowledge, improve my skills, and contribute to organizational growth.
+    </p>
+
+    <h3>Strengths</h3>
+    <div class="list-container">
+        <ul>
+            <li>Hardworking</li>
+            <li>Good communication skills</li>
+        </ul>
+    </div>
+
+    <h3>Hobbies</h3>
+    <div class="list-container">
+        <ul>
+            <li>Learning new technologies</li>
+            <li>Listening to music</li>
+        </ul>
+    </div>
+
+    <p>
+        <a href="https://manyashetty749-max.github.io/sem4-fet/">My Resume</a>
+    </p>
+
+    
+    <script>
+        function changeCourse() {
+            let newCourse = prompt("Enter new course/title:");
+
+            if (newCourse !== null && newCourse.trim() !== "") {
+                document.getElementById("course").innerText = newCourse;
+            } else {
+                alert("Please enter valid text");
+            }
+        }
+    </script>
+
+</body>
+</html>
