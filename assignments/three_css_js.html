@@ -3,13 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Healthcare Form</title>
+    <title>Comprehensive Healthcare Diagnostic</title>
     <style>
         * { box-sizing: border-box; }
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #e0c3fc, #cba6f7, #b8c0ff, #f3e8ff);
-            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -19,78 +18,97 @@
 
         form {
             width: 100%;
-            max-width: 400px;
+            max-width: 500px;
             background: white;
             padding: 25px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        h2 { text-align: center; color: #4a148c; margin-top: 0; }
-
-        input, textarea, select {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
+        fieldset {
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            padding: 15px;
         }
 
-        textarea { height: 80px; resize: none; }
+        legend {
+            font-weight: bold;
+            color: #4a148c;
+            padding: 0 10px;
+        }
+
+        input[type="text"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .row { display: flex; align-items: center; gap: 10px; margin: 5px 0; font-size: 14px; }
+        
+        /* List Box Styling */
+        select[multiple] { height: 80px; }
 
         button {
             width: 100%;
             padding: 12px;
-            margin-top: 15px;
             background: #8e44ad;
             color: white;
             border: none;
             border-radius: 8px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        button:hover { background: #732d91; transform: translateY(-1px); }
-
-        #result {
-            width: 100%;
-            max-width: 400px;
-            margin-top: 25px;
-        }
-
+        #result { width: 100%; max-width: 500px; margin-top: 20px; }
         .patient-card {
-            background: rgba(255, 255, 255, 0.9);
+            background: white;
             padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
             border-left: 5px solid #8e44ad;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
         }
-
-        .prediction-high { color: #d32f2f; font-weight: bold; }
-        #error { color: #d32f2f; font-size: 13px; margin-top: 10px; min-height: 18px; }
+        .error { color: red; font-size: 13px; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <form id="form">
-    <h2>🏥 Health Screener</h2>
-    <input type="text" id="name" placeholder="Full Name">
-    <input type="number" id="age" placeholder="Age">
+    <h2>🏥 Diagnostic Portal</h2>
 
-    <select id="category">
-        <option value="">Select Department</option>
-        <option value="General">General Medicine</option>
-        <option value="Cardiology">Cardiology</option>
-        <option value="Endocrinology">Endocrinology</option>
-    </select>
+    <fieldset>
+        <legend>Patient Identity</legend>
+        <input type="text" id="name" placeholder="Full Name">
+        <input type="number" id="age" placeholder="Age">
+        
+        <div class="row">
+            <span>Sex:</span>
+            <input type="radio" name="sex" value="Male" id="m"><label for="m">Male</label>
+            <input type="radio" name="sex" value="Female" id="f"><label for="f">Female</label>
+        </div>
+    </fieldset>
 
-    <textarea id="symptoms" placeholder="Describe how you feel (e.g. chest pain, fever, thirst...)"></textarea>
+    <fieldset>
+        <legend>Medical Background</legend>
+        <div class="row"><input type="checkbox" name="history" value="Smoking"> Smoking</div>
+        <div class="row"><input type="checkbox" name="history" value="High BP"> High Blood Pressure</div>
+        <div class="row"><input type="checkbox" name="history" value="Asthma"> Asthma</div>
+        
+        <p><small>Primary Concerns (Hold Ctrl/Cmd to select multiple):</small></p>
+        <select id="concerns" multiple>
+            <option value="Fatigue">Fatigue</option>
+            <option value="Pain">Chronic Pain</option>
+            <option value="Sleep">Sleep Issues</option>
+            <option value="Diet">Dietary Issues</option>
+        </select>
+    </fieldset>
+
+    <textarea id="symptoms" placeholder="Describe acute symptoms..."></textarea>
     
-    <div id="error"></div>
-    <button type="submit">Analyze & Save</button>
+    <div id="error" class="error"></div>
+    <button type="submit">Submit Record</button>
 </form>
 
 <div id="result"></div>
@@ -98,66 +116,75 @@
 <script>
 let users = [];
 
-function predict(symptoms) {
-    const input = symptoms.toLowerCase();
-    
-    const conditions = [
-        { key: ["headache", "migraine", "tension"], label: "Neurological / Stress" },
-        { key: ["thirst", "frequent pee", "sugar", "blurred"], label: "Possible Diabetes (Glucose Check Recommended)" },
-        { key: ["fever", "cough", "sore throat", "flu", "cold"], label: "Viral Infection / Respiratory" },
-        { key: ["chest", "palpitation", "heart", "breathless"], label: "Urgent: Cardiovascular Screening Required" }
-    ];
-
-    let finalPrediction = "General Consultation Advised";
-
-    
-    conditions.forEach(cond => {
-        if (cond.key.some(k => input.includes(k))) {
-            finalPrediction = cond.label;
-        }
-    });
-
-    return finalPrediction;
-}
-
-document.getElementById("form").addEventListener("submit", function(e){
+// Event Listener for the form
+document.getElementById("form").addEventListener("submit", function(e) {
     e.preventDefault();
+    const errorDiv = document.getElementById("error");
+    errorDiv.innerText = "";
 
+    // 1. Basic Inputs
     const name = document.getElementById("name").value.trim();
     const age = document.getElementById("age").value;
-    const category = document.getElementById("category").value;
+    
+    // 2. Radio Button handling
+    const sexNode = document.querySelector('input[name="sex"]:checked');
+    const sex = sexNode ? sexNode.value : "Not specified";
+
+    // 3. Checkbox handling with FOR LOOP
+    let history = [];
+    const historyNodes = document.getElementsByName("history");
+    for (let i = 0; i < historyNodes.length; i++) {
+        if (historyNodes[i].checked) {
+            history.push(historyNodes[i].value);
+        }
+    }
+
+    // 4. List Box handling (Multiple Select) with FOR LOOP
+    let concerns = [];
+    const concernOptions = document.getElementById("concerns").options;
+    for (let i = 0; i < concernOptions.length; i++) {
+        if (concernOptions[i].selected) {
+            concerns.push(concernOptions[i].value);
+        }
+    }
+
     const symptoms = document.getElementById("symptoms").value.trim();
-    const error = document.getElementById("error");
 
-    if (!/^[A-Za-z ]+$/.test(name)) return error.innerText = "Please enter a valid name";
-    if (!age || age <= 0 || age > 120) return error.innerText = "Please enter a realistic age";
-    if (!category) return error.innerText = "Please select a category";
-    if (symptoms.length < 3) return error.innerText = "Please describe symptoms in detail";
+    // Validation
+    if (!name || !age) {
+        errorDiv.innerText = "Name and Age are required.";
+        return;
+    }
 
-    error.innerText = "";
+    // Prediction Logic
+    let prediction = analyze(symptoms, concerns);
 
-    const prediction = predict(symptoms);
-    users.unshift({name, age, category, symptoms, prediction}); 
-
+    // Save Data
+    users.unshift({ name, age, sex, history, concerns, symptoms, prediction });
+    
     showData();
     this.reset();
 });
 
+function analyze(symptoms, concerns) {
+    const text = symptoms.toLowerCase();
+    if (text.includes("chest") || text.includes("breath")) return "Urgent: Cardiac Eval";
+    if (concerns.includes("Fatigue") && text.includes("thirst")) return "Check Blood Sugar";
+    return "General Follow-up";
+}
+
 function showData() {
     const resultDiv = document.getElementById("result");
-    resultDiv.innerHTML = "<h3>Recent Patients</h3>";
+    resultDiv.innerHTML = "<h3>Processed Records</h3>";
 
-    users.forEach((u, i) => {
-        const isUrgent = u.prediction.includes("Urgent");
-        
+    users.forEach((u) => {
         resultDiv.innerHTML += `
             <div class="patient-card">
-                <strong>${u.name} (${u.age}y)</strong><br>
-                <small>Dept: ${u.category}</small><hr>
-                <p style="font-size: 0.9em; margin: 5px 0;">"${u.symptoms}"</p>
-                <span class="${isUrgent ? 'prediction-high' : ''}">
-                    Result: ${u.prediction}
-                </span>
+                <strong>${u.name} (${u.age}y, ${u.sex})</strong><br>
+                <small>History: ${u.history.length > 0 ? u.history.join(", ") : "None"}</small><br>
+                <small>Concerns: ${u.concerns.join(", ")}</small>
+                <p><i>"${u.symptoms}"</i></p>
+                <b style="color:#8e44ad">Prediction: ${u.prediction}</b>
             </div>
         `;
     });
