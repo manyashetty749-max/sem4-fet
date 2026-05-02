@@ -1,131 +1,89 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Resume</title>
+    <title>Technical Skills List</title>
+
     <style>
         body {
-            font-family: sans-serif;
-            margin: 40px;
-            text-align: center;
-            background-color: #1a0f2e;   
-            color: white;               
+            background-color: #e0f2fe;
+            font-family: Arial;
+            padding: 20px;
         }
 
-        h1 {
-            color: #d291ff;              
-            border-bottom: 2px solid #d291ff;
-        }
-
-        h3, p {
-            color: white;            
-        }
-
-        .list-container {
-            display: flex;
-            justify-content: center;
+        input, select, button {
+            margin: 5px;
+            padding: 5px;
         }
 
         ul {
-            text-align: left;
-            list-style-type: square;
-            background-color: black;     
-            padding: 15px 30px;          
-            border-radius: 10px;         
-        }
-
-        a {    
-            color: white;
-            background-color: #a259ff;   
-            padding: 8px 12px;
+            background: white;
+            padding: 10px;
             border-radius: 5px;
-            text-decoration: none;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 10px 15px;
-            background-color: #a259ff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <h1>Manya Shetty</h1>
+<h1>Technical Skills</h1>
 
-    <!-- Editable text -->
-    <h3 id="course">Computer Science Engineering Student</h3>
+<input id="skillInput" placeholder="Enter skill">
+<select id="categorySelect">
+    <option value="prog">Programming Languages</option>
+    <option value="tools">Tools & Technologies</option>
+    <option value="core">Core Computer Science</option>
+</select>
 
-    <button onclick="changeCourse()">Change Course</button>
+<button onclick="addSkill()">Add</button>
+<button onclick="removeSkill()">Remove</button>
 
-    <div class="list-container">
-        <ul>
-            <li>Interested to explore new things.</li>
-            <li>Languages known: C, Python.</li>
-        </ul>
-    </div>
+<ol>
+    <li>Programming Languages
+        <ul id="prog"><li>C</li><li>Python</li><li>Java</li></ul>
+    </li>
+    <li>Tools & Technologies
+        <ul id="tools"><li>VS Code</li><li>Git</li><li>Linux</li></ul>
+    </li>
+    <li>Core Computer Science
+        <ul id="core"><li>Programming</li><li>Data Structures</li><li>Algorithms</li></ul>
+    </li>
+</ol>
 
-    <h3>Education</h3>
-    <div class="list-container">
-        <ul>
-            <li>BE in Computer Science Engineering (Pursuing)</li>
-            <li>Completed Computer Course</li>
-            <li>12th Grade</li>
-            <li>10th Grade</li>
-        </ul>
-    </div>
+<script>
+function getList() {
+    return document.getElementById(categorySelect.value);
+}
 
-    <h3>Career Objective</h3>
-    <p>
-        To secure a position in the field of Computer Science where I can
-        apply my knowledge, improve my skills, and contribute to organizational growth.
-    </p>
+function addSkill() {
+    let val = skillInput.value.trim();
+    if (!val) return alert("Enter skill");
 
-    <h3>Strengths</h3>
-    <div class="list-container">
-        <ul>
-            <li>Hardworking</li>
-            <li>Good communication skills</li>
-        </ul>
-    </div>
+    let list = getList();
+    for (let li of list.children)
+        if (li.textContent.toLowerCase() === val.toLowerCase())
+            return alert("Already exists");
 
-    <h3>Hobbies</h3>
-    <div class="list-container">
-        <ul>
-            <li>Learning new technologies</li>
-            <li>Listening to music</li>
-        </ul>
-    </div>
+    list.innerHTML += `<li>${val}</li>`;
+    skillInput.value = "";
+}
 
-    <p>
-        <a href="https://manyashetty749-max.github.io/sem4-fet/">My Resume</a>
-    </p>
+function removeSkill() {
+    let val = skillInput.value.trim().toLowerCase();
+    let list = getList();
 
-    <script>
-        function changeCourse() {
-            let input = prompt("Enter new course/title:");
-
-            
-            let pattern = /^[A-Za-z\s]+$/;
-
-            if (input === null) {
-                alert("You cancelled.");
-            } 
-            else if (input.trim() === "") {
-                alert("Input cannot be empty!");
-            } 
-            else if (!pattern.test(input)) {
-                alert("Only letters and spaces allowed!");
-            } 
-            else {
-                document.getElementById("course").innerText = input;
-                alert("Course updated successfully!");
-            }
+    for (let li of list.children) {
+        if (li.textContent.toLowerCase() === val) {
+            li.remove();
+            skillInput.value = "";
+            return;
         }
-    </script>
+    }
+    alert("Not found");
+}
+</script>
 
 </body>
 </html>
+
+
+
+
