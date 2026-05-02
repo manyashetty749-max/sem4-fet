@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Healthcare Form</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+
+    /* 💜 Light Purple Mixed Background */
+    background: linear-gradient(
+        135deg,
+        #e0c3fc,
+        #cba6f7,
+        #b8c0ff,
+        #f3e8ff
+    );
+
+    padding: 20px;
+    margin: 0;
+}
+
+/* Form box */
+form {
+    width: 360px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Inputs */
+input, textarea, select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #8e44ad;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #732d91;
+}
+
+/* Result box */
+#result {
+    width: 360px;
+    margin: 20px auto;
+    background: #f5e9ff;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+/* Error */
+#error {
+    color: red;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<form id="form">
+
+<h2>🏥 Healthcare Form</h2>
+
+<input type="text" id="name" placeholder="Enter Name">
+<input type="number" id="age" placeholder="Enter Age">
+
+<select id="category">
+    <option value="">Select Category</option>
+    <option>General</option>
+    <option>Heart</option>
+    <option>Diabetes</option>
+</select>
+
+<textarea id="symptoms" placeholder="Enter Symptoms"></textarea>
+
+<div id="error"></div>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div id="result">
+    <h3>Patients Data</h3>
+</div>
+
+<script>
+let users = [];
+
+// Simple prediction logic
+function predict(symptoms) {
+    symptoms = symptoms.toLowerCase();
+
+    if (symptoms.includes("fever") && symptoms.includes("cough")) {
+        return "Flu / Viral Infection";
+    }
+    if (symptoms.includes("chest")) {
+        return "Heart Issue";
+    }
+    if (symptoms.includes("thirst")) {
+        return "Possible Diabetes";
+    }
+    if (symptoms.includes("headache")) {
+        return "Stress / Migraine";
+    }
+
+    return "Normal condition";
+}
+
+// Submit form
+document.getElementById("form").addEventListener("submit", function(e){
+    e.preventDefault();
+
+    let name = document.getElementById("name").value.trim();
+    let age = document.getElementById("age").value;
+    let category = document.getElementById("category").value;
+    let symptoms = document.getElementById("symptoms").value.trim();
+    let error = document.getElementById("error");
+
+    error.innerText = "";
+
+    let namePattern = /^[A-Za-z ]+$/;
+
+    if (!namePattern.test(name)) {
+        error.innerText = "Enter valid name";
+        return;
+    }
+
+    if (age === "" || age <= 0) {
+        error.innerText = "Enter valid age";
+        return;
+    }
+
+    if (category === "") {
+        error.innerText = "Select category";
+        return;
+    }
+
+    if (symptoms === "") {
+        error.innerText = "Enter symptoms";
+        return;
+    }
+
+    let prediction = predict(symptoms);
+
+    users.push({name, age, category, symptoms, prediction});
+
+    showData();
+    this.reset();
+});
+
+// Show results
+function showData() {
+    let result = document.getElementById("result");
+
+    result.innerHTML = "<h3>Patients Data</h3>";
+
+    users.forEach((u, i) => {
+        result.innerHTML += `
+            <p>
+            <b>Patient ${i+1}</b><br>
+            Name: ${u.name}<br>
+            Age: ${u.age}<br>
+            Category: ${u.category}<br>
+            Symptoms: ${u.symptoms}<br>
+            <b>Prediction:</b> ${u.prediction}
+            </p>
+            <hr>
+        `;
+    });
+}
+</script>
+
+</body>
+</html>
