@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Entry System</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --danger: #dc2626;
+            --bg: #f8fafc;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h2 { color: #1e293b; margin-bottom: 1.5rem; }
+
+        input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        button {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        button:hover { background-color: #1d4ed8; }
+
+        button:disabled { background-color: #94a3b8; cursor: not-allowed; }
+
+        #message {
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            min-height: 1.25rem;
+        }
+
+        .error { color: var(--danger); }
+        .success { color: #16a34a; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="login-card" id="loginCard">
+        <h2>Secure Portal</h2>
+        <p id="attempts-text">3 attempts remaining</p>
+        <input type="password" id="passInput" placeholder="Enter Security Key" autofocus>
+        <button id="submitBtn">Verify Access</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const SECRET_KEY = "OpenSesame";
+        let attempts = 0;
+        const MAX_ATTEMPTS = 3;
+
+        const inputField = document.getElementById('passInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageBox = document.getElementById('message');
+        const attemptsText = document.getElementById('attempts-text');
+
+       
+        async function runSecurityCheck() {
+            let accessGranted = false;
+
+           
+            do {
+                
+                const userInput = await waitForInput();
+                
+                if (userInput === SECRET_KEY) {
+                    accessGranted = true;
+                    handleSuccess();
+                } else {
+                    attempts++;
+                    handleFailure();
+                }
+
+            } while (!accessGranted && attempts < MAX_ATTEMPTS);
+
+            if (!accessGranted && attempts >= MAX_ATTEMPTS) {
+                lockSystem();
+            }
+        }
+
+       
+        function waitForInput() {
+            return new Promise((resolve) => {
+                const clickHandler = () => {
+                    const val = inputField.value;
+                    inputField.value = "";
+                    submitBtn.removeEventListener('click', clickHandler);
+                    resolve(val);
+                };
+                submitBtn.addEventListener('click', clickHandler);
+                
+                
+                inputField.onkeypress = (e) => {
+                    if (e.key === 'Enter') clickHandler();
+                };
+            });
+        }
+
+        function handleFailure() {
+            const remaining = MAX_ATTEMPTS - attempts;
+            messageBox.innerHTML = `<span class="error">Access Denied!</span>`;
+            attemptsText.innerText = `${remaining} attempts remaining`;
+            inputField.focus();
+        }
+
+        function handleSuccess() {
+            messageBox.innerHTML = `<span class="success">Access Granted. Redirecting...</span>`;
+            submitBtn.disabled = true;
+            inputField.disabled = true;
+            attemptsText.innerText = "Authorized";
+        }
+
+        function lockSystem() {
+            messageBox.innerHTML = `<span class="error">System Locked. Contact Admin.</span>`;
+            submitBtn.disabled = true;
+            inputField.disabled = true;
+            attemptsText.innerText = "0 attempts remaining";
+        }
+
+       
+        runSecurityCheck();
+    </script>
+</body>
+</html>
