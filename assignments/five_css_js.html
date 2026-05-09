@@ -43,11 +43,9 @@
             align-items: center;
             font-size: 1.2rem;
             border: 2px solid rgba(255,255,255,0.2);
-            /* Initial stack order */
             transition: z-index 0.01s; 
         }
 
-        /* Fixed positions - they don't move */
         #box1 { background-color: #4c1d95; z-index: 3; }
         #box2 { background-color: #6d28d9; z-index: 2; }
         #box3 { background-color: #8b5cf6; z-index: 1; }
@@ -70,15 +68,12 @@
 
     <script>
         function bringToFront(selectedId) {
-            // Get all boxes
             const boxes = document.querySelectorAll('.box');
 
-            // Set all boxes to a low z-index
             boxes.forEach(box => {
                 box.style.zIndex = "1";
             });
 
-            // Bring the selected box to the highest z-index
             document.getElementById(selectedId).style.zIndex = "10";
         }
     </script>
