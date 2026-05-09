@@ -2,88 +2,157 @@
 <html>
 <head>
     <title>Technical Skills List</title>
-
     <style>
-        body {
-            background-color: #e0f2fe;
-            font-family: Arial;
-            padding: 20px;
+        body { 
+            background-color: #1a0f2e; /* Matches your resume theme */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            padding: 40px; 
+            color: white;
+            text-align: center;
         }
 
-        input, select, button {
-            margin: 5px;
-            padding: 5px;
+        h1 { 
+            color: #d291ff; 
+            border-bottom: 2px solid #a259ff; 
+            display: inline-block;
+            margin-bottom: 30px;
         }
 
-        ul {
-            background: white;
-            padding: 10px;
+        /* Input and Select Styling */
+        input, select { 
+            margin: 5px; 
+            padding: 10px; 
             border-radius: 5px;
+            border: 1px solid #a259ff;
+            background-color: #2d1b4d;
+            color: white;
+            outline: none;
+        }
+
+        /* Button Styling */
+        button { 
+            margin: 5px; 
+            padding: 10px 20px; 
+            background-color: #a259ff; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer; 
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        button:hover { 
+            background-color: #d291ff; 
+            color: #1a0f2e;
+        }
+
+        /* List Styling */
+        ol { 
+            text-align: left; 
+            display: inline-block; 
+            margin-top: 30px;
+            color: #d291ff;
+            font-weight: bold;
+        }
+
+        ul { 
+            background: #2d1b4d; /* Darker purple for boxes */
+            padding: 15px 40px; 
+            border-radius: 10px; 
+            color: white;
+            font-weight: normal;
+            margin-bottom: 20px;
+            border: 1px solid rgba(162, 89, 255, 0.3);
+            list-style-type: square;
+        }
+
+        li { margin: 5px 0; }
+
+        /* Link Styling */
+        .resume-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: white;
+            background-color: #a259ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
-<h1>Technical Skills</h1>
+    <h1>Technical Skills</h1>
+    
+    <div>
+        <input id="skillInput" placeholder="Enter skill">
+        <select id="categorySelect">
+            <option value="prog">Programming Languages</option>
+            <option value="tools">Tools & Technologies</option>
+            <option value="core">Core Computer Science</option>
+        </select>
+        <br>
+        <button onclick="addSkill()">Add Skill</button>
+        <button onclick="removeSkill()">Remove Skill</button>
+    </div>
 
-<input id="skillInput" placeholder="Enter skill">
-<select id="categorySelect">
-    <option value="prog">Programming Languages</option>
-    <option value="tools">Tools & Technologies</option>
-    <option value="core">Core Computer Science</option>
-</select>
+    <ol>
+        <li>Programming Languages 
+            <ul id="prog"><li>C</li><li>Python</li><li>Java</li></ul>
+        </li>
+        <li>Tools & Technologies 
+            <ul id="tools"><li>VS Code</li><li>Git</li><li>Linux</li></ul>
+        </li>
+        <li>Core Computer Science 
+            <ul id="core"><li>Programming</li><li>Data Structures</li><li>Algorithms</li></ul>
+        </li>
+    </ol>
 
-<button onclick="addSkill()">Add</button>
-<button onclick="removeSkill()">Remove</button>
+    <br>
+    <a href="https://manyashetty749-max.github.io/sem4-fet/" class="resume-link">Back to Resume</a>
 
-<ol>
-    <li>Programming Languages
-        <ul id="prog"><li>C</li><li>Python</li><li>Java</li></ul>
-    </li>
-    <li>Tools & Technologies
-        <ul id="tools"><li>VS Code</li><li>Git</li><li>Linux</li></ul>
-    </li>
-    <li>Core Computer Science
-        <ul id="core"><li>Programming</li><li>Data Structures</li><li>Algorithms</li></ul>
-    </li>
-</ol>
-
-<script>
-function getList() {
-    return document.getElementById(categorySelect.value);
-}
-
-function addSkill() {
-    debugger;
-    let val = skillInput.value.trim();
-    if (!val) return alert("Enter skill");
-
-    let list = getList();
-    for (let li of list.children)
-        if (li.textContent.toLowerCase() === val.toLowerCase())
-            return alert("Already exists");
-
-    list.innerHTML += `<li>${val}</li>`;
-    skillInput.value = "";
-}
-
-function removeSkill() {
-    let val = skillInput.value.trim().toLowerCase();
-    let list = getList();
-
-    for (let li of list.children) {
-        if (li.textContent.toLowerCase() === val) {
-            li.remove();
-            skillInput.value = "";
-            return;
+    <script>
+        function getList() {
+            return document.getElementById(document.getElementById('categorySelect').value);
         }
-    }
-    alert("Not found");
-}
-</script>
-<a href="https://manyashetty749-max.github.io/sem4-fet/">LIST</a>
+
+        function addSkill() {
+            let skillInput = document.getElementById('skillInput');
+            let val = skillInput.value.trim();
+            if (!val) return alert("Enter skill");
+            
+            let list = getList();
+            for (let li of list.children) {
+                if (li.textContent.toLowerCase() === val.toLowerCase()) {
+                    return alert("Already exists");
+                }
+            }
+            
+            let newLi = document.createElement('li');
+            newLi.textContent = val;
+            list.appendChild(newLi);
+            skillInput.value = "";
+        }
+
+        function removeSkill() {
+            let skillInput = document.getElementById('skillInput');
+            let val = skillInput.value.trim().toLowerCase();
+            let list = getList();
+            
+            for (let li of list.children) {
+                if (li.textContent.toLowerCase() === val) {
+                    li.remove();
+                    skillInput.value = "";
+                    return;
+                }
+            }
+            alert("Not found");
+        }
+    </script>
 </body>
 </html>
+
 
 
 
