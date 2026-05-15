@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Menu & List Box Demo</title>
+
+    <style>
+
+        body {
+
+            margin: 0;
+
+            font-family: Arial, sans-serif;
+
+            background: #17052f;
+
+            color: white;
+
+            min-height: 100vh;
+
+            text-align: center;
+
+        }
+
+        /* MAIN SECTION */
+
+        .top {
+
+            padding: 60px 20px;
+
+        }
+
+        h1 {
+
+            color: #d9a3ff;
+
+            font-size: 55px;
+
+            margin-bottom: 50px;
+
+        }
+
+        h2 {
+
+            font-size: 32px;
+
+            margin-top: 40px;
+
+            color: white;
+
+        }
+
+        /* SELECT BOX */
+
+        select {
+
+            width: 95%;
+
+            padding: 18px;
+
+            font-size: 22px;
+
+            border-radius: 18px;
+
+            border: 2px solid #b266ff;
+
+            margin-top: 20px;
+
+            background: black;
+
+            color: white;
+
+            outline: none;
+
+        }
+
+        select:focus {
+
+            box-shadow:
+            0 0 10px #b266ff;
+
+        }
+
+        /* BUTTON */
+
+        button {
+
+            margin-top: 50px;
+
+            padding: 20px 50px;
+
+            border: none;
+
+            border-radius: 18px;
+
+            background: #b266ff;
+
+            color: white;
+
+            font-size: 24px;
+
+            cursor: pointer;
+
+            transition: 0.3s;
+
+        }
+
+        button:hover {
+
+            background: #d9a3ff;
+
+            transform: scale(1.03);
+
+        }
+
+        /* RESULT */
+
+        #result {
+
+            margin-top: 30px;
+
+            font-size: 24px;
+
+            color: #d9a3ff;
+
+            font-weight: bold;
+
+        }
+
+        /* HOME BUTTON */
+
+        .home {
+
+            margin-top: 80px;
+
+        }
+
+        .home a {
+
+            text-decoration: none;
+
+            background: #b266ff;
+
+            color: white;
+
+            padding: 20px 45px;
+
+            border-radius: 40px;
+
+            font-size: 24px;
+
+            transition: 0.3s;
+
+        }
+
+        .home a:hover {
+
+            background: #d9a3ff;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="top">
+
+        <h1>Menu & List Box Demo</h1>
+
+        <!-- BRANCH -->
+
+        <h2>Select your Branch:</h2>
+
+        <select id="branch">
+
+            <option>
+                --Choose Branch--
+            </option>
+
+            <option>
+                Computer Science
+            </option>
+
+            <option>
+                Information Science
+            </option>
+
+            <option>
+                Electronics
+            </option>
+
+            <option>
+                Mechanical
+            </option>
+
+        </select>
+
+        <!-- SKILLS -->
+
+        <h2>Select your Skills:</h2>
+
+        <select id="skills" multiple size="5">
+
+            <option>HTML</option>
+
+            <option>CSS</option>
+
+            <option>JavaScript</option>
+
+            <option>Python</option>
+
+            <option>C Programming</option>
+
+        </select>
+
+        <!-- BUTTON -->
+
+        <br>
+
+        <button onclick="showSkills()">
+
+            Show Selected Skills
+
+        </button>
+
+        <!-- RESULT -->
+
+        <div id="result"></div>
+
+        <!-- HOME BUTTON -->
+
+        <div class="home">
+
+            <a href="#">
+                Visit My Homepage
+            </a>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        function showSkills()
+        {
+
+            let skills =
+            document.getElementById("skills");
+
+            let selected = [];
+
+            for(let i = 0;
+                i < skills.options.length;
+                i++)
+            {
+
+                if(skills.options[i].selected)
+                {
+
+                    selected.push(
+                    skills.options[i].value);
+
+                }
+
+            }
+
+            document.getElementById("result")
+            .innerHTML =
+            "Selected Skills : "
+            + selected.join(", ");
+
+        }
+
+    </script>
+
+</body>
+
+</html>
