@@ -1,168 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
     <title>Manya Shetty | Secure Terminal</title>
+
     <style>
+
         :root {
+
             --bg-color: #1a0f2e;
             --accent-purple: #a259ff;
             --light-purple: #d291ff;
             --glass: rgba(255, 255, 255, 0.05);
             --error: #ff4d4d;
+
         }
 
         body {
+
             font-family: 'Segoe UI', sans-serif;
+
             background-color: var(--bg-color);
-            background-image: radial-gradient(circle at center, #2d1b4d 0%, #1a0f2e 100%);
+
+            background-image:
+            radial-gradient(circle at center,
+            #2d1b4d 0%,
+            #1a0f2e 100%);
+
             color: white;
+
             height: 100vh;
+
             display: flex;
+
             justify-content: center;
+
             align-items: center;
+
             margin: 0;
+
             overflow: hidden;
+
         }
 
-        /* Frosted Glass Terminal */
         .security-card {
+
             background: var(--glass);
+
             backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(162, 89, 255, 0.3);
+
+            border: 1px solid
+            rgba(162, 89, 255, 0.3);
+
             border-radius: 20px;
+
             padding: 3rem;
+
             text-align: center;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
-            width: 320px;
-            animation: fadeIn 0.8s ease-out;
+
+            box-shadow:
+            0 8px 32px 0 rgba(0, 0, 0, 0.8);
+
+            width: 350px;
+
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Animated Security Ring */
         .icon-box {
+
             width: 80px;
             height: 80px;
+
             background: var(--accent-purple);
+
             border-radius: 50%;
+
             margin: 0 auto 1.5rem;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 2rem;
-            box-shadow: 0 0 20px var(--accent-purple);
-            animation: pulse 2s infinite;
+
+            box-shadow: 0 0 20px
+            var(--accent-purple);
+
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(162, 89, 255, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(162, 89, 255, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(162, 89, 255, 0); }
+        h1 {
+
+            color: var(--light-purple);
+
         }
 
-        h1 { color: var(--light-purple); margin: 0 0 0.5rem; font-size: 1.5rem; letter-spacing: 1px; }
-        p { color: #b0a3c4; font-size: 0.9rem; margin-bottom: 2rem; }
+        p {
+
+            color: #b0a3c4;
+
+        }
 
         input {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--accent-purple);
-            border-radius: 8px;
-            padding: 12px;
-            width: 100%;
-            color: white;
-            text-align: center;
-            font-size: 1rem;
-            margin-bottom: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: 0.3s;
-        }
 
-        input:focus { border-color: var(--light-purple); box-shadow: 0 0 10px var(--accent-purple); }
+            background: rgba(0, 0, 0, 0.3);
+
+            border: 1px solid
+            var(--accent-purple);
+
+            border-radius: 8px;
+
+            padding: 12px;
+
+            width: 100%;
+
+            color: white;
+
+            text-align: center;
+
+            font-size: 1rem;
+
+            margin-bottom: 1rem;
+
+            box-sizing: border-box;
+
+            outline: none;
+
+        }
 
         button {
+
             background: var(--accent-purple);
+
             color: white;
+
             border: none;
+
             border-radius: 8px;
+
             padding: 12px;
+
             width: 100%;
+
             font-weight: bold;
+
             cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
+
         }
 
-        button:hover { background: var(--light-purple); transform: scale(1.02); }
-        button:disabled { background: #444; cursor: not-allowed; transform: none; }
+        button:hover {
 
-        #status-msg { margin-top: 1rem; font-size: 0.85rem; height: 1rem; }
-        .error { color: var(--error); }
-        .success { color: #00ff88; }
+            background: var(--light-purple);
+
+        }
+
+        #status-msg {
+
+            margin-top: 1rem;
+
+        }
+
+        .error {
+
+            color: var(--error);
+
+        }
+
+        .success {
+
+            color: #00ff88;
+
+        }
+
+        /* PORTAL */
+
+        #portal {
+
+            display: none;
+
+            margin-top: 20px;
+
+            text-align: left;
+
+        }
+
+        .portal-card {
+
+            background: rgba(255,255,255,0.05);
+
+            padding: 15px;
+
+            border-radius: 10px;
+
+            margin-top: 10px;
+
+            border: 1px solid
+            rgba(162,89,255,0.3);
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 10px;
+
+        }
+
+        table, th, td {
+
+            border: 1px solid #b48cff;
+
+        }
+
+        th {
+
+            background: #a259ff;
+
+            padding: 8px;
+
+        }
+
+        td {
+
+            padding: 8px;
+
+            background: rgba(255,255,255,0.05);
+
+        }
+
     </style>
+
 </head>
+
 <body>
 
     <div class="security-card">
+
         <div class="icon-box">🔒</div>
+
         <h1>System Access</h1>
-        <p id="attempts-left">Identity Verification Required</p>
-        
-        <input type="password" id="passInput" placeholder="Enter Security Code" autofocus>
-        <button id="verifyBtn">Unlock Terminal</button>
-        
+
+        <p id="attempts-left">
+            Identity Verification Required
+        </p>
+
+        <input type="password"
+               id="passInput"
+               placeholder="Enter Security Code"
+               autofocus>
+
+        <button id="verifyBtn">
+            Unlock Terminal
+        </button>
+
         <div id="status-msg"></div>
+
+        <!-- PORTAL -->
+
+        <div id="portal">
+
+            <div class="portal-card">
+
+                <h3>Student Details</h3>
+
+                <p>Name : Manya Shetty</p>
+
+                <p>USN : 4MT23CS001</p>
+
+                <p>Branch : CSE</p>
+
+                <p>CGPA : 8.9</p>
+
+            </div>
+
+            <div class="portal-card">
+
+                <h3>Attendance</h3>
+
+                <table>
+
+                    <tr>
+                        <th>Subject</th>
+                        <th>Attendance</th>
+                    </tr>
+
+                    <tr>
+                        <td>Java</td>
+                        <td>92%</td>
+                    </tr>
+
+                    <tr>
+                        <td>Frontend</td>
+                        <td>95%</td>
+                    </tr>
+
+                    <tr>
+                        <td>DSA</td>
+                        <td>89%</td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
     </div>
 
-    <script>
-        const KEY = "Manya2024";
-        let tries = 3;
+    <!-- EXTERNAL JS -->
 
-        const input = document.getElementById('passInput');
-        const btn = document.getElementById('verifyBtn');
-        const msg = document.getElementById('status-msg');
-        const attemptsText = document.getElementById('attempts-left');
+    <script src="script.js"></script>
 
-        btn.addEventListener('click', () => {
-            const val = input.value;
-            
-            // Check logic inside the click event (mimicking do...while loop flow)
-            if (val === KEY) {
-                msg.className = "success";
-                msg.innerText = "ACCESS GRANTED. Welcome, Manya.";
-                input.disabled = true;
-                btn.disabled = true;
-                setTimeout(() => {
-                    // Redirect to your actual resume page
-                    window.location.href = "https://github.io";
-                }, 1500);
-            } else {
-                tries--;
-                input.value = "";
-                if (tries > 0) {
-                    msg.className = "error";
-                    msg.innerText = "INVALID KEY";
-                    attemptsText.innerText = `${tries} attempts remaining`;
-                } else {
-                    msg.className = "error";
-                    msg.innerText = "SYSTEM LOCKED";
-                    input.disabled = true;
-                    btn.disabled = true;
-                    attemptsText.innerText = "0 attempts remaining";
-                }
-            }
-        });
-
-        // Press Enter to submit
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') btn.click();
-        });
-    </script>
 </body>
 </html>
