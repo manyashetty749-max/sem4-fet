@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Manya's Portfolio</title>
+  <title>Manya's Frontend Portfolio</title>
 
   <style>
 
     body {
-      background-color: #17052f;
+      background: linear-gradient(to right, #140028, #22063f);
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
       margin: 0;
       font-family: Arial, sans-serif;
+      padding: 20px;
     }
 
     .card {
@@ -20,39 +21,54 @@
       padding: 40px;
       border-radius: 20px;
       width: 90%;
-      max-width: 500px;
-      text-align: center;
-      box-shadow: 0 0 20px rgba(0,0,0,0.6);
+      max-width: 900px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.6);
     }
 
     h1 {
       color: #d78cff;
-      margin-bottom: 5px;
-      font-size: 35px;
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 10px;
     }
 
-    p {
+    .name {
       color: white;
-      font-size: 18px;
+      text-align: center;
+      font-size: 20px;
       margin-bottom: 20px;
+      letter-spacing: 2px;
+    }
+
+    .description {
+      color: #f1e7ff;
+      text-align: center;
+      line-height: 1.8;
+      font-size: 17px;
+      margin-bottom: 35px;
     }
 
     hr {
       border: 1px solid #c77dff;
-      margin-bottom: 25px;
+      margin-bottom: 35px;
     }
 
-    ol {
-      list-style: none;
-      padding: 0;
+    .section-title {
+      color: #e0aaff;
+      margin-bottom: 20px;
+      font-size: 28px;
+      border-left: 5px solid #c77dff;
+      padding-left: 12px;
+    }
 
+    .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 15px;
+      margin-bottom: 40px;
     }
 
-    li a {
-
+    a {
       display: block;
       background-color: black;
       color: white;
@@ -60,21 +76,25 @@
       padding: 14px;
       border-radius: 12px;
       font-weight: bold;
+      text-align: center;
       transition: 0.3s;
       border: 1px solid #c77dff;
-
     }
 
-    li a:hover {
-
+    a:hover {
       background-color: #c77dff;
       color: black;
       transform: scale(1.05);
-
     }
 
-    li:last-child:nth-child(odd) {
-      grid-column: span 2;
+    @media(max-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
     }
 
   </style>
@@ -86,42 +106,101 @@
 
     <h1>FRONTEND TECHNOLOGY</h1>
 
-    <p>MANYA SHETTY</p>
+    <div class="name">MANYA SHETTY</div>
+
+    <div class="description">
+      Welcome to my Frontend Technology Portfolio of 4th Semester.
+      This portfolio contains all my HTML, CSS and JavaScript laboratory
+      assignments and mini projects created during my Frontend Technology course.
+      Each assignment demonstrates different concepts of web development,
+      styling techniques and interactive webpage design.
+    </div>
 
     <hr>
 
-    <ol>
+    <!-- HTML SECTION -->
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one.html">Assignment 1</a></li>
+    <div class="section-title">HTML Assignments</div>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two.html">Assignment 2</a></li>
+    <div class="grid">
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/three.html">Assignment 3</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one.html">
+        Assignment 1
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/four.html">Assignment 4</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two.html">
+        Assignment 2
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/five.html">Assignment 5</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/three.html">
+        Assignment 3
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/six.html">Assignment 6</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/four.html">
+        Assignment 4
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/seven.html">Assignment 7</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/five.html">
+        Assignment 5
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one_css.html">CSS Lab 1</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/six.html">
+        Assignment 6
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two_css.html">CSS Lab 2</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/seven.html">
+        Assignment 7
+      </a>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one_css_js.html">CSS_JS Lab 1</a></li>
+    </div>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two_css_js.html">CSS_JS Lab 2</a></li>
+    <!-- CSS SECTION -->
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/three_css_js.html">CSS_JS (form)</a></li>
+    <div class="section-title">CSS Assignments</div>
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/four_css_js.html">CSS_JS (security)</a></li>
+    <div class="grid">
 
-      <li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/five_css_js.html">CSS_JS (z-indexing)</a></li>
-<li><a href="https://manyashetty749-max.github.io/sem4-fet/assignments/six_css_js.html">CSS_JS (dropdown)</a></li>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one_css.html">
+        CSS Lab 1
+      </a>
 
-    </ol>
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two_css.html">
+        CSS Lab 2
+      </a>
+
+    </div>
+
+    <!-- CSS + JS SECTION -->
+
+    <div class="section-title">JavaScript & Interactive Projects</div>
+
+    <div class="grid">
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/one_css_js.html">
+        CSS_JS Lab 1
+      </a>
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/two_css_js.html">
+        CSS_JS Lab 2
+      </a>
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/three_css_js.html">
+        Form Validation
+      </a>
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/four_css_js.html">
+        Security Project
+      </a>
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/five_css_js.html">
+        Z-Index Project
+      </a>
+
+      <a href="https://manyashetty749-max.github.io/sem4-fet/assignments/six_css_js.html">
+        Dropdown Menu
+      </a>
+
+    </div>
 
   </div>
 
