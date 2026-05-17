@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -45,6 +47,8 @@
 
             overflow: hidden;
 
+            position: relative;
+
         }
 
         .security-card {
@@ -72,6 +76,7 @@
         .icon-box {
 
             width: 80px;
+
             height: 80px;
 
             background: var(--accent-purple);
@@ -88,8 +93,8 @@
 
             font-size: 2rem;
 
-            box-shadow: 0 0 20px
-            var(--accent-purple);
+            box-shadow:
+            0 0 20px var(--accent-purple);
 
         }
 
@@ -150,11 +155,15 @@
 
             cursor: pointer;
 
+            transition: 0.3s;
+
         }
 
         button:hover {
 
             background: var(--light-purple);
+
+            color: black;
 
         }
 
@@ -235,6 +244,45 @@
 
         }
 
+        /* HOME BUTTON */
+
+        .home-btn {
+
+            position: absolute;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            background: #a259ff;
+
+            color: white;
+
+            padding: 12px 20px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+            box-shadow:
+            0 0 10px rgba(162,89,255,0.5);
+
+        }
+
+        .home-btn:hover {
+
+            background: #d291ff;
+
+            color: #1a0f2e;
+
+            transform: scale(1.05);
+
+        }
+
     </style>
 
 </head>
@@ -248,7 +296,9 @@
         <h1>System Access</h1>
 
         <p id="attempts-left">
+
             Identity Verification Required
+
         </p>
 
         <input type="password"
@@ -257,7 +307,9 @@
                autofocus>
 
         <button id="verifyBtn">
+
             Unlock Terminal
+
         </button>
 
         <div id="status-msg"></div>
@@ -287,23 +339,35 @@
                 <table>
 
                     <tr>
+
                         <th>Subject</th>
+
                         <th>Attendance</th>
+
                     </tr>
 
                     <tr>
+
                         <td>Java</td>
+
                         <td>92%</td>
+
                     </tr>
 
                     <tr>
+
                         <td>Frontend</td>
+
                         <td>95%</td>
+
                     </tr>
 
                     <tr>
+
                         <td>DSA</td>
+
                         <td>89%</td>
+
                     </tr>
 
                 </table>
@@ -314,12 +378,17 @@
 
     </div>
 
-   <a href="https://manyashetty749-max.github.io/sem4-fet/index.html"
-   class="home-btn">
-   Home Page
-</a>
+    <!-- HOME PAGE BUTTON -->
+
+    <a href="https://manyashetty749-max.github.io/sem4-fet/index.html"
+       class="home-btn">
+
+       Home Page
+
+    </a>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
