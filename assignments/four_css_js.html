@@ -171,6 +171,8 @@
 
             margin-top: 1rem;
 
+            font-weight: bold;
+
         }
 
         .error {
@@ -297,7 +299,7 @@
 
         <p id="attempts-left">
 
-            Identity Verification Required
+            3 Attempts Remaining
 
         </p>
 
@@ -387,7 +389,108 @@
 
     </a>
 
-    <script src="script.js"></script>
+    <script>
+
+        const KEY = "Manya2024";
+
+        let tries = 3;
+
+        const input =
+        document.getElementById("passInput");
+
+        const btn =
+        document.getElementById("verifyBtn");
+
+        const msg =
+        document.getElementById("status-msg");
+
+        const attempts =
+        document.getElementById("attempts-left");
+
+        const portal =
+        document.getElementById("portal");
+
+        btn.addEventListener("click",
+        verifyPassword);
+
+        function verifyPassword()
+        {
+
+            let value = input.value;
+
+            if(value === KEY)
+            {
+
+                msg.className = "success";
+
+                msg.innerText =
+                "ACCESS GRANTED";
+
+                portal.style.display =
+                "block";
+
+                input.disabled = true;
+
+                btn.disabled = true;
+
+            }
+
+            else
+            {
+
+                tries--;
+
+                msg.className = "error";
+
+                input.value = "";
+
+                if(tries > 0)
+                {
+
+                    msg.innerText =
+                    "INVALID SECURITY KEY";
+
+                    attempts.innerText =
+                    tries +
+                    " Attempts Remaining";
+
+                }
+
+                else
+                {
+
+                    msg.innerText =
+                    "SYSTEM LOCKED";
+
+                    attempts.innerText =
+                    "No Attempts Left";
+
+                    input.disabled = true;
+
+                    btn.disabled = true;
+
+                }
+
+            }
+
+        }
+
+        /* ENTER KEY */
+
+        input.addEventListener("keypress",
+        function(e)
+        {
+
+            if(e.key === "Enter")
+            {
+
+                verifyPassword();
+
+            }
+
+        });
+
+    </script>
 
 </body>
 
