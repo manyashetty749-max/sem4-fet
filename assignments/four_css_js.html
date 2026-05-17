@@ -410,6 +410,9 @@
         const portal =
         document.getElementById("portal");
 
+        attempts.innerText =
+        "3 Attempts Remaining";
+
         btn.addEventListener("click",
         verifyPassword);
 
@@ -417,6 +420,8 @@
         {
 
             let value = input.value;
+
+            /* CHECK PASSWORD */
 
             if(value === KEY)
             {
@@ -444,6 +449,8 @@
 
                 input.value = "";
 
+                /* REMAINING ATTEMPTS */
+
                 if(tries > 0)
                 {
 
@@ -455,6 +462,8 @@
                     " Attempts Remaining";
 
                 }
+
+                /* LOCK SYSTEM */
 
                 else
                 {
