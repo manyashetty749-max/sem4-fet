@@ -4,12 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Manya Shetty | Diagnostic Portal</title>
+
     <style>
-        * { box-sizing: border-box; }
+
+        * {
+            box-sizing: border-box;
+        }
         
         body {
             font-family: 'Segoe UI', sans-serif;
-            /* Using your signature dark purple background */
             background-color: #1a0f2e;
             display: flex;
             flex-direction: column;
@@ -19,12 +22,15 @@
             color: white;
         }
 
-        h2 { color: #d291ff; text-align: center; }
+        h2 {
+            color: #d291ff;
+            text-align: center;
+        }
 
         form {
             width: 100%;
             max-width: 500px;
-            background: #2d1b4d; /* Slightly lighter purple for the form card */
+            background: #2d1b4d;
             padding: 25px;
             border-radius: 16px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.5);
@@ -44,7 +50,10 @@
             padding: 0 10px;
         }
 
-        input[type="text"], input[type="number"], textarea, select {
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             margin: 8px 0;
@@ -63,8 +72,8 @@
             font-size: 14px;
         }
 
-        /* Checkbox and Radio colors */
-        input[type="checkbox"], input[type="radio"] {
+        input[type="checkbox"],
+        input[type="radio"] {
             accent-color: #a259ff;
         }
 
@@ -78,6 +87,7 @@
             font-weight: bold;
             cursor: pointer;
             transition: 0.3s;
+            margin-top: 10px;
         }
 
         button:hover {
@@ -100,108 +110,254 @@
             border-top: 1px solid rgba(162, 89, 255, 0.2);
         }
 
-        .error { color: #ff4d4d; font-size: 13px; margin-bottom: 10px; }
+        .error {
+            color: #ff4d4d;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
         
-        small { color: #b0a3c4; }
+        small {
+            color: #b0a3c4;
+        }
+
+        .home-btn {
+            display: inline-block;
+            margin-top: 25px;
+            background-color: #a259ff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .home-btn:hover {
+            background-color: #d291ff;
+            color: #1a0f2e;
+        }
+
     </style>
+
 </head>
+
 <body>
 
     <form id="form">
+
         <h2>🏥 Diagnostic Portal</h2>
+
         <fieldset>
+
             <legend>Patient Identity</legend>
+
             <input type="text" id="name" placeholder="Full Name">
+
             <input type="number" id="age" placeholder="Age">
+
             <div class="row">
+
                 <span>Sex:</span>
-                <input type="radio" name="sex" value="Male" id="m"><label for="m">Male</label>
-                <input type="radio" name="sex" value="Female" id="f"><label for="f">Female</label>
+
+                <input type="radio" name="sex" value="Male" id="m">
+                <label for="m">Male</label>
+
+                <input type="radio" name="sex" value="Female" id="f">
+                <label for="f">Female</label>
+
             </div>
+
         </fieldset>
 
         <fieldset>
+
             <legend>Medical Background</legend>
-            <div class="row"><input type="checkbox" name="history" value="Smoking"> Smoking</div>
-            <div class="row"><input type="checkbox" name="history" value="High BP"> High Blood Pressure</div>
-            <div class="row"><input type="checkbox" name="history" value="Asthma"> Asthma</div>
-            <p><small>Primary Concerns (Hold Ctrl/Cmd to select multiple):</small></p>
+
+            <div class="row">
+                <input type="checkbox" name="history" value="Smoking">
+                Smoking
+            </div>
+
+            <div class="row">
+                <input type="checkbox" name="history" value="High BP">
+                High Blood Pressure
+            </div>
+
+            <div class="row">
+                <input type="checkbox" name="history" value="Asthma">
+                Asthma
+            </div>
+
+            <p>
+                <small>Primary Concerns (Hold Ctrl/Cmd to select multiple):</small>
+            </p>
+
             <select id="concerns" multiple>
+
                 <option value="Fatigue">Fatigue</option>
+
                 <option value="Pain">Chronic Pain</option>
+
                 <option value="Sleep">Sleep Issues</option>
+
                 <option value="Diet">Dietary Issues</option>
+
             </select>
+
         </fieldset>
 
         <textarea id="symptoms" placeholder="Describe acute symptoms..."></textarea>
+
         <div id="error" class="error"></div>
+
         <button type="submit">Submit Record</button>
+
     </form>
 
     <div id="result"></div>
 
+    <!-- HOME BUTTON -->
+
+    <a href="https://manyashetty749-max.github.io/sem4-fet/index.html" class="home-btn">
+        Home Page
+    </a>
+
     <script>
+
         let users = [];
+
         document.getElementById("form").addEventListener("submit", function(e) {
+
             e.preventDefault();
+
             const errorDiv = document.getElementById("error");
+
             errorDiv.innerText = "";
 
             const name = document.getElementById("name").value.trim();
+
             const age = document.getElementById("age").value;
+
             const sexNode = document.querySelector('input[name="sex"]:checked');
+
             const sex = sexNode ? sexNode.value : "Not specified";
 
             let history = [];
+
             const historyNodes = document.getElementsByName("history");
+
             for (let i = 0; i < historyNodes.length; i++) {
-                if (historyNodes[i].checked) { history.push(historyNodes[i].value); }
+
+                if (historyNodes[i].checked) {
+
+                    history.push(historyNodes[i].value);
+
+                }
+
             }
 
             let concerns = [];
+
             const concernOptions = document.getElementById("concerns").options;
+
             for (let i = 0; i < concernOptions.length; i++) {
-                if (concernOptions[i].selected) { concerns.push(concernOptions[i].value); }
+
+                if (concernOptions[i].selected) {
+
+                    concerns.push(concernOptions[i].value);
+
+                }
+
             }
 
             const symptoms = document.getElementById("symptoms").value.trim();
 
             if (!name || !age) {
+
                 errorDiv.innerText = "Name and Age are required.";
+
                 return;
+
             }
 
             let prediction = analyze(symptoms, concerns);
-            users.unshift({ name, age, sex, history, concerns, symptoms, prediction });
+
+            users.unshift({
+                name,
+                age,
+                sex,
+                history,
+                concerns,
+                symptoms,
+                prediction
+            });
+
             showData();
+
             this.reset();
+
         });
 
         function analyze(symptoms, concerns) {
+
             const text = symptoms.toLowerCase();
-            if (text.includes("chest") || text.includes("breath")) return "Urgent: Cardiac Eval";
-            if (concerns.includes("Fatigue") && text.includes("thirst")) return "Check Blood Sugar";
+
+            if (text.includes("chest") || text.includes("breath")) {
+
+                return "Urgent: Cardiac Eval";
+
+            }
+
+            if (concerns.includes("Fatigue") && text.includes("thirst")) {
+
+                return "Check Blood Sugar";
+
+            }
+
             return "General Follow-up";
+
         }
 
         function showData() {
+
             const resultDiv = document.getElementById("result");
+
             resultDiv.innerHTML = "<h3>Processed Records</h3>";
+
             users.forEach((u) => {
+
                 resultDiv.innerHTML += `
+
                     <div class="patient-card">
-                        <strong style="color: #d291ff;">${u.name} (${u.age}y, ${u.sex})</strong><br>
-                        <small>History: ${u.history.length > 0 ? u.history.join(", ") : "None"}</small><br>
-                        <small>Concerns: ${u.concerns.join(", ")}</small>
+
+                        <strong style="color: #d291ff;">
+                            ${u.name} (${u.age}y, ${u.sex})
+                        </strong><br>
+
+                        <small>
+                            History: ${u.history.length > 0 ? u.history.join(", ") : "None"}
+                        </small><br>
+
+                        <small>
+                            Concerns: ${u.concerns.join(", ")}
+                        </small>
+
                         <p><i>"${u.symptoms}"</i></p>
-                        <b style="color:#a259ff">Prediction: ${u.prediction}</b>
+
+                        <b style="color:#a259ff">
+                            Prediction: ${u.prediction}
+                        </b>
+
                     </div>
+
                 `;
+
             });
+
         }
-         <a href="https://manyashetty749-max.github.io/sem4-fet/">home page</a>
+
     </script>
+
 </body>
 </html>
 
