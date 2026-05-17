@@ -2,22 +2,24 @@
 <html>
 <head>
     <title>My Resume</title>
+
     <style>
+
         body {
             font-family: sans-serif;
             margin: 40px;
             text-align: center;
-            background-color: #1a0f2e;   
-            color: white;               
+            background-color: #1a0f2e;
+            color: white;
         }
 
         h1 {
-            color: #d291ff;              
+            color: #d291ff;
             border-bottom: 2px solid #d291ff;
         }
 
         h3, p {
-            color: white;            
+            color: white;
         }
 
         .list-container {
@@ -28,17 +30,25 @@
         ul {
             text-align: left;
             list-style-type: square;
-            background-color: black;     
-            padding: 15px 30px;          
-            border-radius: 10px;         
+            background-color: black;
+            padding: 15px 30px;
+            border-radius: 10px;
         }
 
-        a {    
+        a {
             color: white;
-            background-color: #a259ff;   
-            padding: 8px 12px;
+            background-color: #a259ff;
+            padding: 10px 15px;
             border-radius: 5px;
             text-decoration: none;
+            margin: 5px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+
+        a:hover {
+            background-color: #d291ff;
+            color: black;
         }
 
         button {
@@ -49,18 +59,29 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            transition: 0.3s;
         }
+
+        button:hover {
+            background-color: #d291ff;
+            color: black;
+        }
+
+        .buttons {
+            margin-top: 30px;
+        }
+
     </style>
+
 </head>
+
 <body>
 
     <h1>Manya Shetty</h1>
 
-   
     <h3 id="course">Computer Science Engineering Student</h3>
 
-  
-    <button onclick="changeCourse()">Change </button>
+    <button onclick="changeCourse()">Change</button>
 
     <div class="list-container">
         <ul>
@@ -70,6 +91,7 @@
     </div>
 
     <h3>Education</h3>
+
     <div class="list-container">
         <ul>
             <li>BE in Computer Science Engineering (Pursuing)</li>
@@ -80,12 +102,14 @@
     </div>
 
     <h3>Career Objective</h3>
+
     <p>
         To secure a position in the field of Computer Science where I can
         apply my knowledge, improve my skills, and contribute to organizational growth.
     </p>
 
     <h3>Strengths</h3>
+
     <div class="list-container">
         <ul>
             <li>Hardworking</li>
@@ -94,6 +118,7 @@
     </div>
 
     <h3>Hobbies</h3>
+
     <div class="list-container">
         <ul>
             <li>Learning new technologies</li>
@@ -101,21 +126,37 @@
         </ul>
     </div>
 
-    <p>
-        <a href="https://manyashetty749-max.github.io/sem4-fet/">home page</a>
-    </p>
+    <!-- BUTTONS -->
 
-    
+    <div class="buttons">
+
+        <a href="https://manyashetty749-max.github.io/sem4-fet/">
+            Resume Page
+        </a>
+
+        <a href="https://manyashetty749-max.github.io/sem4-fet/index.html">
+            Home Page
+        </a>
+
+    </div>
+
     <script>
+
         function changeCourse() {
+
             let newCourse = prompt("Enter new course/title:");
 
             if (newCourse !== null && newCourse.trim() !== "") {
+
                 document.getElementById("course").innerText = newCourse;
+
             } else {
+
                 alert("Please enter valid text");
+
             }
         }
+
     </script>
 
 </body>
