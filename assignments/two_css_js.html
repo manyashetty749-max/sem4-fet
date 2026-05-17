@@ -2,9 +2,11 @@
 <html>
 <head>
     <title>Technical Skills List</title>
+
     <style>
+
         body { 
-            background-color: #1a0f2e; /* Matches your resume theme */
+            background-color: #1a0f2e;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             padding: 40px; 
             color: white;
@@ -18,7 +20,6 @@
             margin-bottom: 30px;
         }
 
-        /* Input and Select Styling */
         input, select { 
             margin: 5px; 
             padding: 10px; 
@@ -29,7 +30,6 @@
             outline: none;
         }
 
-        /* Button Styling */
         button { 
             margin: 5px; 
             padding: 10px 20px; 
@@ -47,7 +47,6 @@
             color: #1a0f2e;
         }
 
-        /* List Styling */
         ol { 
             text-align: left; 
             display: inline-block; 
@@ -57,7 +56,7 @@
         }
 
         ul { 
-            background: #2d1b4d; /* Darker purple for boxes */
+            background: #2d1b4d;
             padding: 15px 40px; 
             border-radius: 10px; 
             color: white;
@@ -67,90 +66,184 @@
             list-style-type: square;
         }
 
-        li { margin: 5px 0; }
+        li { 
+            margin: 5px 0; 
+        }
 
-        /* Link Styling */
+        .buttons {
+            margin-top: 30px;
+        }
+
         .resume-link {
             display: inline-block;
-            margin-top: 30px;
+            margin: 10px;
             color: white;
             background-color: #a259ff;
             padding: 10px 20px;
             border-radius: 5px;
             text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
+        .resume-link:hover {
+            background-color: #d291ff;
+            color: #1a0f2e;
+        }
+
     </style>
+
 </head>
+
 <body>
 
     <h1>Technical Skills</h1>
     
     <div>
+
         <input id="skillInput" placeholder="Enter skill">
+
         <select id="categorySelect">
+
             <option value="prog">Programming Languages</option>
+
             <option value="tools">Tools & Technologies</option>
+
             <option value="core">Core Computer Science</option>
+
         </select>
+
         <br>
+
         <button onclick="addSkill()">Add Skill</button>
+
         <button onclick="removeSkill()">Remove Skill</button>
+
     </div>
 
     <ol>
-        <li>Programming Languages 
-            <ul id="prog"><li>C</li><li>Python</li><li>Java</li></ul>
+
+        <li>
+            Programming Languages 
+
+            <ul id="prog">
+                <li>C</li>
+                <li>Python</li>
+                <li>Java</li>
+            </ul>
+
         </li>
-        <li>Tools & Technologies 
-            <ul id="tools"><li>VS Code</li><li>Git</li><li>Linux</li></ul>
+
+        <li>
+            Tools & Technologies 
+
+            <ul id="tools">
+                <li>VS Code</li>
+                <li>Git</li>
+                <li>Linux</li>
+            </ul>
+
         </li>
-        <li>Core Computer Science 
-            <ul id="core"><li>Programming</li><li>Data Structures</li><li>Algorithms</li></ul>
+
+        <li>
+            Core Computer Science 
+
+            <ul id="core">
+                <li>Programming</li>
+                <li>Data Structures</li>
+                <li>Algorithms</li>
+            </ul>
+
         </li>
+
     </ol>
 
-    <br>
-    <a href="https://manyashetty749-max.github.io/sem4-fet/" class="resume-link">Back to Resume</a>
+    <!-- BUTTONS -->
+
+    <div class="buttons">
+
+        <a href="https://manyashetty749-max.github.io/sem4-fet/" class="resume-link">
+            Resume Page
+        </a>
+
+        <a href="https://manyashetty749-max.github.io/sem4-fet/index.html" class="resume-link">
+            Home Page
+        </a>
+
+    </div>
 
     <script>
+
         function getList() {
-            return document.getElementById(document.getElementById('categorySelect').value);
+
+            return document.getElementById(
+                document.getElementById('categorySelect').value
+            );
+
         }
 
         function addSkill() {
+
             let skillInput = document.getElementById('skillInput');
+
             let val = skillInput.value.trim();
-            if (!val) return alert("Enter skill");
-            
-            let list = getList();
-            for (let li of list.children) {
-                if (li.textContent.toLowerCase() === val.toLowerCase()) {
-                    return alert("Already exists");
-                }
+
+            if (!val) {
+
+                return alert("Enter skill");
+
             }
-            
+
+            let list = getList();
+
+            for (let li of list.children) {
+
+                if (li.textContent.toLowerCase() === val.toLowerCase()) {
+
+                    return alert("Already exists");
+
+                }
+
+            }
+
             let newLi = document.createElement('li');
+
             newLi.textContent = val;
+
             list.appendChild(newLi);
+
             skillInput.value = "";
+
         }
 
         function removeSkill() {
+
             let skillInput = document.getElementById('skillInput');
+
             let val = skillInput.value.trim().toLowerCase();
+
             let list = getList();
-            
+
             for (let li of list.children) {
+
                 if (li.textContent.toLowerCase() === val) {
+
                     li.remove();
+
                     skillInput.value = "";
+
                     return;
+
                 }
+
             }
+
             alert("Not found");
+
         }
-         <a href="https://manyashetty749-max.github.io/sem4-fet/">home page</a>
+
     </script>
+
 </body>
 </html>
 
