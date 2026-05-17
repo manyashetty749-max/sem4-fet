@@ -17,6 +17,22 @@ document.getElementById("attempts-left");
 const portal =
 document.getElementById("portal");
 
+/* HOME PAGE BUTTON */
+
+const homeBtn =
+document.createElement("a");
+
+homeBtn.href =
+"https://manyashetty749-max.github.io/sem4-fet/index.html";
+
+homeBtn.innerText =
+"Home Page";
+
+homeBtn.className =
+"home-btn";
+
+document.body.appendChild(homeBtn);
+
 btn.addEventListener("click", verifyPassword);
 
 function verifyPassword()
