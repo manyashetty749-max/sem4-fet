@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #00b09b, #96c93d, #2193b0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #2193b0;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #17687d;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Currency Converter</h1>
+
+    <input type="number" id="amount" placeholder="Enter amount">
+
+    <select id="currency">
+      <option value="INRtoUSD">INR → USD</option>
+      <option value="USDtoINR">USD → INR</option>
+      <option value="INRtoEUR">INR → EUR</option>
+      <option value="EURtoINR">EUR → INR</option>
+    </select>
+
+    <button onclick="convert()">Convert</button>
+
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function convert() {
+      let amount = document.getElementById("amount").value;
+      let type = document.getElementById("currency").value;
+      let result = 0;
+
+      if (!amount) {
+        document.getElementById("result").innerText = "Please enter amount";
+        return;
+      }
+
+      amount = parseFloat(amount);
+
+      // Fixed sample rates
+      const INR_USD = 0.012;
+      const USD_INR = 83;
+      const INR_EUR = 0.011;
+      const EUR_INR = 90;
+
+      switch(type) {
+        case "INRtoUSD":
+          result = amount * INR_USD;
+          break;
+        case "USDtoINR":
+          result = amount * USD_INR;
+          break;
+        case "INRtoEUR":
+          result = amount * INR_EUR;
+          break;
+        case "EURtoINR":
+          result = amount * EUR_INR;
+          break;
+      }
+
+      document.getElementById("result").innerText =
+        "Converted Amount: " + result.toFixed(2);
+    }
+  </script>
+
+</body>
+</html>
